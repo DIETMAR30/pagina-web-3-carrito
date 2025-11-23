@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Proyecto académico: tienda interactiva con JavaScript (carrito, eventos, clases, mapas y más)." />
+  <meta name="author" content="Estudiante - Proyecto Web" />
+  <title>Moda Continental - Tienda de Ropa (Entrega Mejorada)</title>
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/estilos.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Moda <span>Continental</span></a>
+      <nav class="main-nav" aria-label="Navegación principal" id="mainNav">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="pages/catalogo.html">Catálogo</a></li>
+          <li><a href="pages/nosotros.html">Nosotros</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+      <button id="menuBtn" class="menu-btn" aria-expanded="false" aria-controls="mainNav">☰</button>
+      <button id="cartBtn" aria-label="Ver carrito" class="cart-btn">🛒 <span id="cartCount">0</span></button>
+    </div>
+  </header>
+
+  <section class="hero" aria-label="Presentación">
+    <figure class="hero-figure">
+      <picture>
+        <source srcset="img/banner-small.svg 600w, img/banner-medium.svg 1000w, img/banner-large.svg 1600w" sizes="(max-width:800px) 600px, 1000px" type="image/svg+xml">
+        <img src="img/banner-medium.svg" alt="Banner promocional de Moda Continental" class="hero-img">
+      </picture>
+      <figcaption>Colección 2025 — Estilo y comodidad.</figcaption>
+    </figure>
+
+    <div class="hero-text">
+      <h1>Bienvenidos a Moda Continental</h1>
+      <p>Diseño original + prácticas avanzadas de HTML5, CSS3 y JavaScript. Proyecto académico.</p>
+      <a class="btn" href="pages/catalogo.html">Ver catálogo</a>
+    </div>
+  </section>
+
+  <main>
+    <section id="productos" class="productos container" aria-labelledby="prod-title">
+      <h2 id="prod-title">Productos destacados (interactivo)</h2>
+
+      <ul class="lista-productos" id="listaProductos">
+        <!-- Productos inyectados por JS -->
+      </ul>
+    </section>
+
+    <section id="mapa-interactivo" class="container" aria-labelledby="mapa-title">
+      <h2 id="mapa-title">Mapa interactivo de la tienda</h2>
+      <img src="img/tienda-map.png" usemap="#zonasTienda" alt="Plano de tienda interactivo" class="mapa-img" id="mapaImg">
+      <map name="zonasTienda" id="zonasTienda">
+        <area shape="rect" coords="10,10,190,140" href="pages/nosotros.html" alt="Zona A - Información" title="Acerca de nosotros">
+        <area shape="circle" coords="320,90,60" href="pages/catalogo.html" alt="Zona B - Catálogo" title="Ir al catálogo">
+        <area shape="poly" coords="420,10,560,10,560,140,420,140" href="#contacto" alt="Zona C - Contacto" title="Contacto rápido">
+      </map>
+      <p class="small">Haz clic en las zonas del plano para navegar. (Implementado con &lt;map&gt; y &lt;area&gt;).</p>
+    </section>
+
+    <section class="tabla-form container" aria-labelledby="tabla-title">
+      <h2 id="tabla-title">Precios y tallas (tabla estilizada)</h2>
+      <table class="precios" summary="Tabla de precios para algunos productos">
+        <thead>
+          <tr>
+            <th>Producto</th><th>Talla</th><th>Disponible</th><th>Precio</th>
+          </tr>
+        </thead>
+        <tbody id="tablaBody">
+          <!-- filas inyectadas por JS para demostrar DOM -->
+        </tbody>
+      </table>
+    </section>
+
+    <section id="contacto" class="contacto container" aria-labelledby="contacto-title">
+      <h2 id="contacto-title">Contacto</h2>
+      <p>Escríbenos y te responderemos en menos de 48 horas (simulado).</p>
+
+      <form class="formulario" id="contactForm" action="https://formspree.io/f/xbjqzplk" method="POST" aria-label="Formulario de contacto">
+        <label for="nombre">Nombre completo</label>
+        <input id="nombre" name="nombre" type="text" required>
+
+        <label for="email">Correo electrónico</label>
+        <input id="email" name="_replyto" type="email" required>
+
+        <label for="asunto">Asunto</label>
+        <select id="asunto" name="asunto" required>
+          <option value="">-- Seleccione --</option>
+          <option value="consulta">Consulta</option>
+          <option value="pedido">Pedido</option>
+          <option value="otros">Otros</option>
+        </select>
+
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+
+        <button type="submit" class="btn">Enviar</button>
+      </form>
+    </section>
+
+    <section class="svg-demo container" aria-labelledby="svg-title">
+      <h2 id="svg-title">SVG gráfico (editable)</h2>
+      <svg class="logo-svg" viewBox="0 0 200 60" role="img" aria-label="Logo animado">
+        <title>Logo Moda Continental</title>
+        <rect x="0" y="0" width="200" height="60" rx="8" fill="none"></rect>
+        <text x="10" y="38" font-size="24" font-family="Arial, sans-serif" class="svg-text">Moda <tspan class="accent">Continental</tspan></text>
+      </svg>
+    </section>
+
+    <div id="cartModal" class="cart-modal" aria-hidden="true">
+      <div class="cart-content" id="cartContent">
+        <button id="closeCart" class="close-cart" aria-label="Cerrar carrito">✕</button>
+        <h3>Carrito</h3>
+        <ul id="cartItems"></ul>
+        <p>Total: S/ <span id="cartTotal">0.00</span></p>
+        <button id="checkoutBtn" class="btn">Pagar (simulado)</button>
+      </div>
+    </div>
+
+    <!-- Demonstration zone for event propagation -->
+    <section class="demo-propagation container" aria-labelledby="prop-title">
+      <h2 id="prop-title">Demostración: Propagación de eventos</h2>
+      <div id="outerBox" class="box outer">
+        Outer (clic aquí)
+        <div id="innerBox" class="box inner">Inner (clic aquí)</div>
+      </div>
+      <p class="small">Haz clic en los recuadros para ver burbujeo y captura en la consola (f12).</p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 Moda Continental. Proyecto académico — entregable con rúbrica.</p>
+      <p><a href="Informe.doc" download>Descargar informe del trabajo (doc)</a></p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
